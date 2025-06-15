@@ -34,11 +34,9 @@ export default function Home() {
 
   // Fetch posts on mount and when address changes
   useEffect(() => {
-    if (address) {
-      console.log('Fetching posts for address:', address);
-      fetchPosts();
-    }
-  }, [address, fetchPosts]);
+    console.log('Fetching posts');
+    fetchPosts();
+  }, [fetchPosts]);
 
   // Log posts updates
   useEffect(() => {
