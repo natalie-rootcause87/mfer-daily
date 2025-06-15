@@ -3,7 +3,7 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount } from 'wagmi';
 import { useEffect, useState } from 'react';
-import { checkMferOwnership, getOwnedMferTokens } from '@/lib/utils/checkMferOwnership';
+import { getOwnedMferTokens } from '@/lib/utils/checkMferOwnership';
 import { usePosts } from '@/hooks/usePosts';
 import { format } from 'date-fns';
 import Image from 'next/image';
