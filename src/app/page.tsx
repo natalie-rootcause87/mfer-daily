@@ -84,45 +84,6 @@ export default function Home() {
         </div>
         <h1 className="text-3xl sm:text-4xl font-bold text-center my-4 sm:my-8">Mfers Daily</h1>
         <p className="text-center text-lg sm:text-xl mb-4 sm:mb-8 px-4">One post a day per mfer. No grind. Just mfers.</p>
-
-        {/* Posts Display Section */}
-        <div className="mt-8 sm:mt-12 w-full max-w-2xl mx-auto px-4">
-          <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Recent Posts</h2>
-          {loading && posts.length === 0 ? (
-            <p className="text-center">Loading posts...</p>
-          ) : posts.length === 0 ? (
-            <p className="text-center text-gray-500">No posts yet. Be the first to post!</p>
-          ) : (
-            <div className="space-y-4 sm:space-y-6">
-              {posts.map((post) => (
-                <div key={post._id} className="bg-white p-4 sm:p-6 rounded-lg shadow-md">
-                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3">
-                    <div className="relative w-8 h-8 sm:w-10 sm:h-10 bg-gray-200 rounded-full">
-                      <Image
-                        src={post.author.thumbnail || ''}
-                        alt="Mfer"
-                        fill
-                        className="object-cover rounded-full"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                        }}
-                      />
-                    </div>
-                    <span className="font-bold text-base sm:text-lg">{post.author.title}</span>
-                    <span className="text-gray-500 text-xs sm:text-sm">
-                      {format(new Date(post.createdAt), 'MMM d, yyyy h:mm a')}
-                    </span>
-                    <span className="text-gray-500 text-xs sm:text-sm">
-                      Balance: {post.author.balance} $mfer
-                    </span>
-                  </div>
-                  <p className="text-gray-800 whitespace-pre-wrap text-sm sm:text-base">{post.content}</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
         {isConnected && (
           <div className="text-center mt-4 px-4">
             {isChecking ? (
@@ -189,6 +150,44 @@ export default function Home() {
             )}
           </div>
         )}
+        {/* Posts Display Section */}
+        <div className="mt-8 sm:mt-12 w-full max-w-2xl mx-auto px-4">
+          <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Recent Posts</h2>
+          {loading && posts.length === 0 ? (
+            <p className="text-center">Loading posts...</p>
+          ) : posts.length === 0 ? (
+            <p className="text-center text-gray-500">No posts yet. Be the first to post!</p>
+          ) : (
+            <div className="space-y-4 sm:space-y-6">
+              {posts.map((post) => (
+                <div key={post._id} className="bg-white p-4 sm:p-6 rounded-lg shadow-md">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3">
+                    <div className="relative w-8 h-8 sm:w-10 sm:h-10 bg-gray-200 rounded-full">
+                      <Image
+                        src={post.author.thumbnail || ''}
+                        alt="Mfer"
+                        fill
+                        className="object-cover rounded-full"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                        }}
+                      />
+                    </div>
+                    <span className="font-bold text-base sm:text-lg">{post.author.title}</span>
+                    <span className="text-gray-500 text-xs sm:text-sm">
+                      {format(new Date(post.createdAt), 'MMM d, yyyy h:mm a')}
+                    </span>
+                    <span className="text-gray-500 text-xs sm:text-sm">
+                      Balance: {post.author.balance} $mfer
+                    </span>
+                  </div>
+                  <p className="text-gray-800 whitespace-pre-wrap text-sm sm:text-base">{post.content}</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </main>
   );
