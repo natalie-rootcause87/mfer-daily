@@ -1,19 +1,5 @@
-import { createPublicClient, http } from 'viem';
-import { mainnet } from 'viem/chains';
-
-// Mfer contract address
+// Mfers contract address
 const MFER_CONTRACT = '0x79fcdef22feed20eddacbb2587640e45491b757f';
-
-// ERC721 ABI for balanceOf function
-const ERC721_ABI = [
-  {
-    inputs: [{ name: 'owner', type: 'address' }],
-    name: 'balanceOf',
-    outputs: [{ name: '', type: 'uint256' }],
-    stateMutability: 'view',
-    type: 'function',
-  },
-] as const;
 
 export async function getOwnedMferTokens(address: string): Promise<{title: string, image: string}[]> {
   try {
@@ -31,7 +17,7 @@ export async function getOwnedMferTokens(address: string): Promise<{title: strin
 
     const data = await response.json();
     const ownedNfts = data.ownedNfts || [];
-    console.log("ownedNfts", ownedNfts[0])
+
     // Extract token IDs as strings
     return ownedNfts.map((nft: any) => ({
       title: nft.title,

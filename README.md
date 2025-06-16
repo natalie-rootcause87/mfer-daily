@@ -1,10 +1,10 @@
-# Mfer Daily
+# Mfers Daily
 
 A minimalist game/space for holders of mfers to check in once per day and share their vibes.
 
 ## Features
 
-- 🔐 Mfer-Only Gating: Must hold an mfer to post (read-only otherwise)
+- 🔐 Mfers-Only Gating: Must hold an mfer to post (read-only otherwise)
 - 📝 One Post Per Day: Encourages presence without FOMO or grind
 - 📜 Shared Timeline: Scroll through what other mfers posted today or this week
 - 🎯 Zero Monetization: No tokens, no upgrades—no web3 noise

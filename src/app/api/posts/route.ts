@@ -10,7 +10,7 @@ const openai = new OpenAI({
 export async function POST(req: Request) {
   console.log("POST request received");
   try {
-    const { content, title, address, thumbnail } = await req.json();
+    const { content, title, address, thumbnail, balance } = await req.json();
     if (!address) {
       return NextResponse.json({ error: 'No address provided' }, { status: 400 });
     }
@@ -19,6 +19,9 @@ export async function POST(req: Request) {
     }
     if (!thumbnail) {
       return NextResponse.json({ error: 'No thumbnail provided' }, { status: 400 });
+    }
+    if (!balance) {
+      return NextResponse.json({ error: 'No balance provided' }, { status: 400 });
     }
 
     await connectDB();
@@ -57,6 +60,7 @@ export async function POST(req: Request) {
         address,
         title,
         thumbnail,
+        balance,
       },
       moderated: true,
       approved: !moderation.results[0].flagged,
@@ -85,8 +89,6 @@ export async function GET(req: Request) {
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit);
-
-    console.log('Found posts:', posts);
 
     const total = await Post.countDocuments({ approved: true });
 

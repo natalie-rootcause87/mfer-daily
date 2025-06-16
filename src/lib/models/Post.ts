@@ -19,6 +19,10 @@ const PostSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
+    balance: {
+      type: String,
+      required: true,
+    },
   },
   createdAt: {
     type: Date,

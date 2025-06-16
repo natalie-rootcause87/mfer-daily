@@ -9,6 +9,7 @@ interface Post {
     address: string;
     title: string;
     thumbnail: string;
+    balance: string;
   };
   createdAt: string;
 }
@@ -53,7 +54,7 @@ export function usePosts() {
   }, []);
 
   const createPost = useCallback(
-    async (content: string, title: string, thumbnail: string) => {
+    async (content: string, title: string, thumbnail: string, balance: string) => {
       if (!address) {
         toast.error('Please connect your wallet');
         return;
@@ -66,7 +67,7 @@ export function usePosts() {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ content, title, address, thumbnail }),
+          body: JSON.stringify({ content, title, address, thumbnail, balance }),
         });
 
         if (!response.ok) {

@@ -7,8 +7,8 @@ import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Mfer Daily",
-  description: "A minimalist timeline game for mfer holders",
+  title: "Mfers Daily",
+  description: "A minimalist timeline game for mfers holders",
 };
 
 export default function RootLayout({
