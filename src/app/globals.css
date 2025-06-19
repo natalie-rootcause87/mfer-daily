@@ -2,6 +2,127 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Cat-themed animations */
+@keyframes catBounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.1);
+  }
+}
+
+@keyframes catPurr {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.05);
+  }
+  75% {
+    transform: scale(0.95);
+  }
+}
+
+@keyframes catTail {
+  0%, 100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes achievementGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+  }
+}
+
+@keyframes catSleep {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Custom utility classes */
+.animate-cat-bounce {
+  animation: catBounce 0.6s ease-in-out;
+}
+
+.animate-cat-purr {
+  animation: catPurr 0.3s ease-in-out infinite;
+}
+
+.animate-cat-tail {
+  animation: catTail 1s ease-in-out infinite;
+}
+
+.animate-achievement-glow {
+  animation: achievementGlow 2s ease-in-out infinite;
+}
+
+.animate-cat-sleep {
+  animation: catSleep 2s ease-in-out infinite;
+}
+
+/* Cat paw cursor for interactive elements */
+.cat-cursor {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%23FF6B6B'><path d='M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.9 1 3 1.9 3 3V21C3 22.1 3.9 23 5 23H19C20.1 23 21 22.1 21 21V9ZM19 9H14V4H5V21H19V9Z'/></svg>") 12 12, auto;
+}
+
+/* Hover effects for cat interactions */
+.cat-interactive:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Cat-themed gradients */
+.cat-gradient {
+  background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+}
+
+.cat-gradient-hover:hover {
+  background: linear-gradient(135deg, #FF5252 0%, #26A69A 100%);
+}
+
+/* Responsive cat sizing */
+@media (max-width: 640px) {
+  .cat-responsive {
+    transform: scale(0.8);
+  }
+}
+
+/* Cat mood transitions */
+.cat-mood-transition {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Achievement celebration effects */
+.achievement-celebration {
+  background: linear-gradient(45deg, #FFD700, #FFA500, #FF6347, #FFD700);
+  background-size: 400% 400%;
+  animation: gradientShift 2s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

@@ -6,8 +6,11 @@ import { useEffect, useState } from 'react';
 import { getOwnedMferTokens } from '@/lib/utils/checkMferOwnership';
 import { usePosts } from '@/hooks/usePosts';
 import { useMferBalance } from '@/hooks/useMferBalance';
+import { useCatStats } from '@/hooks/useCatStats';
 import { format } from 'date-fns';
 import Image from 'next/image';
+import VirtualCat from '@/components/VirtualCat';
+import CatAchievements from '@/components/CatAchievements';
 
 export default function Home() {
   const { address, isConnected } = useAccount();
@@ -19,6 +22,7 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
   const { posts, fetchPosts, createPost, loading } = usePosts();
+  const { stats, incrementCatInteractions } = useCatStats(address, posts);
 
   // Fetch owned mfers
   useEffect(() => {
@@ -65,6 +69,16 @@ export default function Home() {
     await createPost(postContent, selectedToken.title, selectedToken.image, balance || '0');
     setPostContent('');
     fetchPosts();
+  };
+
+  const handleCatInteraction = (action: string) => {
+    console.log(`Cat interaction: ${action}`);
+    incrementCatInteractions();
+  };
+
+  const handleAchievementUnlocked = (achievement: any) => {
+    console.log(`Achievement unlocked: ${achievement.title}`);
+    // You can add more achievement celebration logic here
   };
 
   if (!mounted) {
@@ -189,6 +203,23 @@ export default function Home() {
           )}
         </div>
       </div>
+      
+      {/* Virtual Cat Component */}
+      <VirtualCat
+        isConnected={isConnected}
+        ownedTokens={ownedTokens}
+        hasPostedToday={postedTitles.length > 0}
+        onCatInteraction={handleCatInteraction}
+      />
+
+      {/* Cat Achievements Component */}
+      <CatAchievements
+        totalPosts={stats.totalPosts}
+        daysActive={stats.daysActive}
+        mferCount={ownedTokens.length}
+        catInteractions={stats.catInteractions}
+        onAchievementUnlocked={handleAchievementUnlocked}
+      />
     </main>
   );
 }
